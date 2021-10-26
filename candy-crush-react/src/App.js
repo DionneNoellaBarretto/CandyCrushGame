@@ -198,11 +198,25 @@ const App = () => {
 
     console.log(squareBeingDraggedID, squareBeingReplacedID);
 
-   const isAColumnOfFour = checkForColumnOfFour();
-   const isARowOfFour = checkForRowOfFour();
-   const isAColumnOfThree = checkForColumnOfThree();
-   const isARowOfThree = checkForRowOfThree();
+    const isAColumnOfFour = checkForColumnOfFour();
+    const isARowOfFour = checkForRowOfFour();
+    const isAColumnOfThree = checkForColumnOfThree();
+    const isARowOfThree = checkForRowOfThree();
 
+    if (
+      squareBeingReplacedID &&
+      validMove &&
+      (isAColumnOfFour || isARowOfFour || isAColumnOfThree || isARowOfThree)
+    ) {
+      setSquareBeingDragged(null);
+      setSquareBeingReplaced(null);
+    } else {
+      currentColorArrangement[squareBeingReplacedID] =
+        squareBeingReplaced.style.backgroundColor;
+      currentColorArrangement[squareBeingDraggedID] =
+        squareBeingDragged.style.backgroundColor;
+      setCurrentColorArrangement([...currentColorArrangement]);
+    }
   };
 
   // for 64 (8x8) board with random candies
