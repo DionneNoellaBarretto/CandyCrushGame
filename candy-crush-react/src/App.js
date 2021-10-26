@@ -1,3 +1,5 @@
+/* eslint-disable no-sparse-arrays */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 // width of the board
@@ -9,8 +11,12 @@ const App = () => {
   // to store the candy colored arrangements state
   const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
 
+  const [squareBeingDragged, setSquareBeingDragged] = useState(null);
+
+  const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
+
   const checkForColumnOfFour = () => {
-    for (let i = 0; i < 39; i++) {
+    for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3];
 
       const decidedColor = currentColorArrangement[i];
@@ -25,13 +31,14 @@ const App = () => {
         columnOfFour.forEach(
           (square) => (currentColorArrangement[square] = "")
         );
+        return true;
       }
     }
   };
 
   // check functions
   const checkForColumnOfThree = () => {
-    for (let i = 0; i < 47; i++) {
+    for (let i = 0; i <= 47; i++) {
       const columnOfThree = [i, i + width, i + width * 2];
       // [0,8,16] ; [1,9,17] and so on...
 
@@ -48,6 +55,7 @@ const App = () => {
         columnOfThree.forEach(
           (square) => (currentColorArrangement[square] = "")
         );
+        return true;
       }
     }
   };
@@ -73,12 +81,13 @@ const App = () => {
       ) {
         // replacing with an empty string
         rowOfThree.forEach((square) => (currentColorArrangement[square] = ""));
+        return true;
       }
     }
   };
 
   const checkForRowOfFour = () => {
-    for (let i = 0; i < 47; i++) {
+    for (let i = 0; i <= 47; i++) {
       const rowOfFour = [i, i + 1, i + 2, i + 3];
 
       const decidedColor = currentColorArrangement[i];
@@ -119,6 +128,7 @@ const App = () => {
       ) {
         // replacing with an empty string
         rowOfFour.forEach((square) => (currentColorArrangement[square] = ""));
+        return true;
       }
     }
   };
@@ -141,6 +151,58 @@ const App = () => {
         currentColorArrangement[i] = "";
       }
     }
+  };
+
+  const dragStart = (e) => {
+    // console.log("dragStart");
+    // console.log(e.target);
+    setSquareBeingDragged(e.target);
+  };
+
+  const dragDrop = (e) => {
+    // console.log("dragDrop");
+    // console.log(e.target);
+    setSquareBeingReplaced(e.target);
+  };
+
+  const dragEnd = (e) => {
+    // console.log("dragEnd");
+    console.log(e.target);
+
+    const squareBeingDraggedID = parseInt(
+      squareBeingDragged.getAttribute("data-id")
+    );
+    const squareBeingReplacedID = parseInt(
+      squareBeingReplaced.getAttribute("data-id")
+    );
+
+    // color switching logic!
+
+    currentColorArrangement[squareBeingReplacedID] =
+      squareBeingDragged.style.backgroundColor;
+    currentColorArrangement[squareBeingDraggedID] =
+      squareBeingReplaced.style.backgroundColor;
+
+    // valid moves!
+
+    const validMoves = [
+      squareBeingDraggedID - 1,
+      squareBeingDraggedID - width,
+      squareBeingDraggedID + 1,
+      squareBeingDraggedID + width,
+    ];
+
+    //
+
+    const validMove = validMoves.includes(squareBeingReplacedID);
+
+    console.log(squareBeingDraggedID, squareBeingReplacedID);
+
+   const isAColumnOfFour = checkForColumnOfFour();
+   const isARowOfFour = checkForRowOfFour();
+   const isAColumnOfThree = checkForColumnOfThree();
+   const isARowOfThree = checkForRowOfThree();
+
   };
 
   // for 64 (8x8) board with random candies
@@ -188,9 +250,17 @@ const App = () => {
   return (
     <div className="app">
       <div className="game">
-        {currentColorArrangement.map((candyColors, index) => (
+        {currentColorArrangement.map((candyColors, index: number) => (
           <img
             alt="candy color"
+            data-id={index}
+            draggable={true}
+            onDragStart={{ dragStart }}
+            onDragOver={(e: DragEvent<HTMLImageElement>) => e.preventDefault()}
+            onDragEnter={(e: DragEvent<HTMLImageElement>) => e.preventDefault()}
+            onDragLeave={(e: DragEvent<HTMLImageElement>) => e.preventDefault()}
+            onDrop={{ dragDrop }}
+            onDragEnd={{ dragEnd }}
             key={index}
             style={{ backgroundColor: candyColors }}
           />
