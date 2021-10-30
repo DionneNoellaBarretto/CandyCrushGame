@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/CandyCrushGame/static/css/main.373675cc.chunk.css",
+    "main.js": "/CandyCrushGame/static/js/main.eb8129a7.chunk.js",
+    "main.js.map": "/CandyCrushGame/static/js/main.eb8129a7.chunk.js.map",
+    "runtime-main.js": "/CandyCrushGame/static/js/runtime-main.ffa8fff3.js",
+    "runtime-main.js.map": "/CandyCrushGame/static/js/runtime-main.ffa8fff3.js.map",
+    "static/js/2.4490a7a4.chunk.js": "/CandyCrushGame/static/js/2.4490a7a4.chunk.js",
+    "static/js/2.4490a7a4.chunk.js.map": "/CandyCrushGame/static/js/2.4490a7a4.chunk.js.map",
+    "index.html": "/CandyCrushGame/index.html",
+    "static/css/main.373675cc.chunk.css.map": "/CandyCrushGame/static/css/main.373675cc.chunk.css.map",
+    "static/js/2.4490a7a4.chunk.js.LICENSE.txt": "/CandyCrushGame/static/js/2.4490a7a4.chunk.js.LICENSE.txt",
+    "static/media/blank.fbcb9179.png": "/CandyCrushGame/static/media/blank.fbcb9179.png",
+    "static/media/blue.73120c15.png": "/CandyCrushGame/static/media/blue.73120c15.png",
+    "static/media/green.599f7016.png": "/CandyCrushGame/static/media/green.599f7016.png",
+    "static/media/orange.f106b2cd.png": "/CandyCrushGame/static/media/orange.f106b2cd.png",
+    "static/media/purple.ae25b8a5.png": "/CandyCrushGame/static/media/purple.ae25b8a5.png",
+    "static/media/red.3658b37c.png": "/CandyCrushGame/static/media/red.3658b37c.png",
+    "static/media/yellow.a3d87a9b.png": "/CandyCrushGame/static/media/yellow.a3d87a9b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ffa8fff3.js",
+    "static/js/2.4490a7a4.chunk.js",
+    "static/css/main.373675cc.chunk.css",
+    "static/js/main.eb8129a7.chunk.js"
+  ]
+}
