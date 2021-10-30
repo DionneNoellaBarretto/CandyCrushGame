@@ -9,6 +9,7 @@
   height: 800px;
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 .game img {
@@ -18,5 +19,12 @@
 }
 
 body {
-  background: #000;
+  background: rgb(61, 61, 61);
+}
+
+
+.score{
+  border: 1px dashed black;
+  text-align: center ;
+  font-size: 2rem;
 }
